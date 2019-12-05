@@ -8,8 +8,9 @@ branches.each {
         scm {
             git("git://github.com/${project}.git", branchName)
         }
-        steps {
-            sh 'ls -lha'
+        xShell {
+            commandLine('ls -lha')
+            executableInWorkspaceDir()
         }
     }
 }
