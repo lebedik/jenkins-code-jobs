@@ -1,4 +1,4 @@
-freeStyleJob('example') {
+freeStyleJob('build-job-dsl-plugin') {
     logRotator(-1, 10)
     jdk('Java 8')
     scm {
