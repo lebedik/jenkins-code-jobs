@@ -1,3 +1,8 @@
+import jenkins.*
+import jenkins.model.*
+import hudson.*
+import hudson.model.*
+
 Jenkins.instance.getAllItems(Job).each{
 
   def jobBuilds=it.getBuilds()
