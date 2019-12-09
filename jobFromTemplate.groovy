@@ -1,14 +1,21 @@
-
-freeStyleJob('base_job') {
-    disabled true
-    logRotator("–1, 10, –1, –1")
+freeStyleJob('base-template-job') {
+    jdk('Java 8')
+    logRotator(-1, 10)
+    scm {
+        github('jenkinsci/job-dsl-plugin', 'master')
+    }
+    triggers {
+        githubPush()
+    }
 }
-
 
 freeStyleJob('job-with-template') {
     disabled false
     steps {
-        shell "echo 'Rotates just like the template!'"
+        gradle('clean build')
     }
-    using('base_job')
+    publishers {
+        archiveArtifacts('job-dsl-plugin/build/libs/job-dsl.hpi')
+    }
+    useing('base-template-job')
 }
