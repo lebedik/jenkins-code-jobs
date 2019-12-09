@@ -17,5 +17,5 @@ freeStyleJob('job-with-template') {
     publishers {
         archiveArtifacts('job-dsl-plugin/build/libs/job-dsl.hpi')
     }
-    useing('base-template-job')
+    using('base-template-job')
 }
