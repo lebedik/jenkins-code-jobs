@@ -49,16 +49,16 @@ items.each { item ->
         def job_data = Jenkins.instance.getItemByFullName(item.fullName)
         println 'Job: ' + item.fullName
         
-        //Check if job had atleast one build done
+        //Check if job had at least one build done
         if (job_data.getLastBuild()) {
             last_job_num = job_data.getLastBuild().getNumber()
             def upStreamBuild = Jenkins.getInstance().getItemByFullName(item.fullName).getBuildByNumber(last_job_num)
             
-            println 'LastBuildNumer: ' + last_job_num
+            println 'LastBuildNumber: ' + last_job_num
             println "LastBuildTime: ${upStreamBuild.getTime()}"
             println 'LastBuildCause: ' + findCause(upStreamBuild)
             
-            //Check if job had atleast one successful build
+            //Check if job had at least one successful build
             if (job_data.getLastSuccessfulBuild()) {
                 println 'LastSuccessNumber: ' + job_data.getLastSuccessfulBuild().getNumber()
                 println 'LastSuccessResult: ' + job_data.getLastSuccessfulBuild().result
@@ -67,7 +67,7 @@ items.each { item ->
                 println 'LastSuccessResult: Null'
             }
         } else {
-            println 'LastBuildNumer: Null'
+            println 'LastBuildNumber: Null'
         }
 
     } catch (Exception e) {
@@ -81,7 +81,7 @@ items.each { item ->
 println "Job type: ${job.getClass()}"
 println "Is building: ${job.isBuilding()}"
 println "Is in queue: ${job.isInQueue()}"
-println "Last successfull build: ${job.getLastSuccessfulBuild()}"
+println "Last successful build: ${job.getLastSuccessfulBuild()}"
 println "Last failed build: ${job.getLastFailedBuild()}"
 println "Last build: ${job.getLastBuild()}"
 println "All builds: ${job.getBuilds().collect{ it.getNumber()}}"
