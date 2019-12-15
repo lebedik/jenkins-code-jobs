@@ -13,21 +13,28 @@ freeStyleJob("FreeStyleJob-2") {
 }
 
 // Pipeline
-pipeline {
-    agent any 
-
-    stages {
-        stage('Trigger FreeStyleJob-1') {
-            agent any 
-            steps {
-                build job: 'FreeStyleJob-1'
-            }
-        }
-        stage('Trigger FreeStyleJob-2') {
+pipelineJob('Trigger FreeStyleJobs') {
+  definition {
+    cps {
+      script('''
+        pipeline {
             agent any
-            steps {
-                build job: 'FreeStyleJob-2'
+                stages {
+                    stage('Trigger FreeStyleJob-1') {
+                        steps {
+                            build job: 'FreeStyleJob-1'
+                        }
+                    }
+                    stage('Trigger FreeStyleJob-2') {
+                        steps {
+                            build job: 'FreeStyleJob-2'
+                        }
+                    }
+                }
             }
         }
+      '''.stripIndent())
+      sandbox()     
     }
+  }
 }
