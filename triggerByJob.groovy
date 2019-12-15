@@ -1,14 +1,14 @@
 // Some Job
 freeStyleJob("FreeStyleJob-1") {
     steps {
-        echo 'I am FreeStyleJob-1'
+        gradle('clean build')
     }
 }
 
 // Some another Job
 freeStyleJob("FreeStyleJob-2") {
     steps {
-        echo 'I am FreeStyleJob-2'
+        gradle('clean build')
     }
 }
 
