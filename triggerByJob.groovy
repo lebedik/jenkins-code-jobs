@@ -22,17 +22,16 @@ pipelineJob('Trigger FreeStyleJobs') {
                 stages {
                     stage('Trigger FreeStyleJob-1') {
                         steps {
-                            build job: 'FreeStyleJob-1'
+                            build job: './FreeStyleJob-1'
                         }
                     }
                     stage('Trigger FreeStyleJob-2') {
                         steps {
-                            build job: 'FreeStyleJob-2'
+                            build job: './FreeStyleJob-2'
                         }
                     }
                 }
             }
-        }
       '''.stripIndent())
       sandbox()     
     }
