@@ -1,14 +1,14 @@
 // Some Job
 freeStyleJob("FreeStyleJob-1") {
     steps {
-        gradle('clean build')
+        shell('echo Hello World!')
     }
 }
 
 // Some another Job
 freeStyleJob("FreeStyleJob-2") {
     steps {
-        gradle('clean build')
+        shell('echo Hello World!')
     }
 }
 
@@ -22,12 +22,12 @@ pipelineJob('Trigger FreeStyleJobs') {
                 stages {
                     stage('Trigger FreeStyleJob-1') {
                         steps {
-                            build job: './FreeStyleJob-1'
+                            build job: './FreeStyleJob-1', parameters: [string(name: 'Trigger FreeStyleJobs', value: env.NAME)], wait: true
                         }
                     }
                     stage('Trigger FreeStyleJob-2') {
                         steps {
-                            build job: './FreeStyleJob-2'
+                            build job: './FreeStyleJob-2', parameters: [string(name: 'Trigger FreeStyleJobs', value: env.NAME)], wait: true
                         }
                     }
                 }
