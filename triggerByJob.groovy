@@ -18,15 +18,15 @@ pipelineJob('Trigger FreeStyleJobs') {
     cps {
       script('''
             def checkjob1 = build job: './FreeStyleJob-1', wait: true
-            checklog1 = Jenkins.getInstance().getItemByFullName('FreeStyleJob-1').getBuildByNumber(checkjob.getNumber()).log
+            checklog1 = Jenkins.getInstance().getItemByFullName('FreeStyleJob-1').getBuildByNumber(checkjob1.getNumber()).log
             println checklog1
 
             def checkjob2 = build job: './FreeStyleJob-2', wait: true
-            checklog2 = Jenkins.getInstance().getItemByFullName('FreeStyleJob-2').getBuildByNumber(checkjob.getNumber()).log
+            checklog2 = Jenkins.getInstance().getItemByFullName('FreeStyleJob-2').getBuildByNumber(checkjob2.getNumber()).log
             println checklog2
 
             pipeline {
-                agent any
+                agent none
                     stages {
                         stage('Trigger FreeStyleJob-1') {
                             steps {
@@ -41,7 +41,7 @@ pipelineJob('Trigger FreeStyleJobs') {
                     }
                 }
       '''.stripIndent())
-      sandbox()     
+      sandbox(false)     
     }
   }
 }
